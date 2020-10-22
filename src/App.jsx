@@ -33,6 +33,7 @@ function App() {
   
   const [posts, setPosts] = useState([]);
   const [open, setOpen] = useState(false);
+  const [openSignIn, setOpenSignIn] = useState('');
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -48,14 +49,6 @@ function App() {
         // user has logged in..
         console.log(authUser);
         setUser(authUser);
-
-        if (authUser.displayName) {
-          //don't update username
-        } else {
-          return authUser.updateProfile({
-            displayName:username,
-          })
-        }
 
       } else {
         //user has logged out..
@@ -85,6 +78,11 @@ function App() {
   const signUp = (e) => {
     e.preventDefault();
     auth.createUserWithEmailAndPassword(email, password)
+      .then((authUser) => {
+        return authUser.user.updateProfile({
+        displayName:username
+      })
+    })
     .catch((error)=>alert(error.message))
   }
 
@@ -136,10 +134,16 @@ function App() {
           className="app__headerImage" />
         
       </div>
-      <Button
-        onClick={() => setOpen(true)}
-      >
-        Sign Up</Button>
+
+      { user ? (
+        <Button onClick={() => auth.signOut}>Logout</Button>
+      ) : (
+          <div className="app__loginContainer">
+            <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
+            <Button onClick={() => setOpen(true)}>Sign Up</Button>
+          </div>
+      )}
+      
 
       {/* Posts */}
 
