@@ -2,7 +2,7 @@
   background-color: white;
   max-width: 600px;
   border: 1px solid lightgray;
-  margin: auto;
+  /* margin: auto; */
   margin-bottom: 45px;
 }
 
@@ -26,4 +26,23 @@
 
 .post__avatar {
   margin-right: 10px;
+}
+
+.post__commentBox {
+  display: flex;
+  margin-top: 10px;
+  border-top: 1px solid lightgray;
+}
+
+.post__input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+}
+
+.post__button {
+  flex: 0;
+  border: none;
+  color: gray;
+  background-color: transparent;
 }
