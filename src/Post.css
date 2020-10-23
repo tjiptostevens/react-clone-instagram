@@ -46,3 +46,7 @@
   color: gray;
   background-color: transparent;
 }
+
+.post__comments {
+  padding: 20px;
+}
